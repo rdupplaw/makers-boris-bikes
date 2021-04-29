@@ -1,4 +1,4 @@
-require 'DockingStation'
+require 'docking_station'
 describe DockingStation do
   describe 'responds to #release_bike' do
     subject { DockingStation.new }
