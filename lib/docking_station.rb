@@ -4,7 +4,8 @@ class DockingStation
 
   def release_bike
     raise 'No bike available' if bike.nil?
-    Bike.new
+    released_bike, @bike = bike, nil
+    released_bike
   end
 
   def dock(bike_to_dock)
