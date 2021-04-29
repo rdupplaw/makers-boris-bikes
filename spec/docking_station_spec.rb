@@ -17,24 +17,24 @@ describe DockingStation do
         released_bike = station.release_bike
 
         expect(released_bike).to eq(bike)
-        expect(station.bike).to be_nil
+        expect(station.bikes).to eq([])
       end
     end
   end
 
   describe '#dock' do
-    station = DockingStation.new
-    bike = Bike.new
-    station.dock(bike)
-
     it 'stores a given Bike instance in @bike' do
-      expect(station.bike).to eq(bike)
+      station = DockingStation.new
+      bike = Bike.new
+      station.dock(bike)
+
+      expect(station.bikes).to eq([bike])
     end
 
     context 'when dock is at capacity' do
       station = DockingStation.new
       bike = Bike.new
-      station.dock(bike)
+      20.times { station.dock(bike) }
 
       it 'raises an error' do
         expect { station.dock(Bike.new) }.to raise_error(RuntimeError)
@@ -48,7 +48,7 @@ describe DockingStation do
     station.dock(bike)
 
     it 'returns the stored bike' do
-      expect(station.bike).to eq(bike)
+      expect(station.bikes).to eq([bike])
     end
   end
 end
