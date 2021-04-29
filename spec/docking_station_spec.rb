@@ -3,6 +3,21 @@ describe DockingStation do
   it 'responds to #release_bike' do
     expect(DockingStation.new).to respond_to(:release_bike)
   end
+
+  describe '.new' do
+    it 'can take an argument which sets capacity of bikes' do
+      station = DockingStation.new(40)
+      40.times {station.dock(Bike.new)}
+      expect {station.dock(Bike.new)}.to raise_error(RuntimeError)
+    end
+
+    it 'has a default capacity of 20' do
+      station = DockingStation.new
+      20.times {station.dock(Bike.new)}
+      expect {station.dock(Bike.new)}.to raise_error(RuntimeError)
+    end
+  end
+
   describe '#release_bike' do
     context 'when there is no bike available' do
       it 'raises an error' do
