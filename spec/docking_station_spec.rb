@@ -7,6 +7,11 @@ describe DockingStation do
     it 'returns a Bike that responds to #working?' do
       expect(DockingStation.new.release_bike).to respond_to(:working?)
     end
+    context 'when there is no bike available' do
+      it 'raises an error' do
+        expect { DockingStation.new.release_bike }.to raise_error(RuntimeError)
+      end
+    end
   end
 
   describe '#dock' do
