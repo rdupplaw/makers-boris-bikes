@@ -30,6 +30,16 @@ describe DockingStation do
     it 'stores a given Bike instance in @bike' do
       expect(station.bike).to eq(bike)
     end
+
+    context 'when dock is at capacity' do
+      station = DockingStation.new
+      bike = Bike.new
+      station.dock(bike)
+
+      it 'raises an error' do
+        expect { station.dock(Bike.new) }.to raise_error(RuntimeError)
+      end
+    end
   end
 
   describe '#bike' do
