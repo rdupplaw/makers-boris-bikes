@@ -34,7 +34,7 @@ describe DockingStation do
     context 'when dock is at capacity' do
       station = DockingStation.new
       bike = Bike.new
-      20.times { station.dock(bike) }
+      DockingStation::DEFAULT_CAPACITY.times { station.dock(bike) }
 
       it 'raises an error' do
         expect { station.dock(Bike.new) }.to raise_error(RuntimeError)
