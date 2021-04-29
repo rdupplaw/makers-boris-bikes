@@ -18,4 +18,14 @@ describe DockingStation do
       expect(station.bike).to eq(bike)
     end
   end
+
+  describe '#bike' do
+    station = DockingStation.new
+    bike = Bike.new
+    station.dock(bike)
+
+    it 'returns the stored bike' do
+      expect(station.bike).to eq(bike)
+    end
+  end
 end
